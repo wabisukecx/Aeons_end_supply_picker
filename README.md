@@ -5,4 +5,4 @@
 
 こちらのアプリケーションはStreamlitで公開しており、誰でも使うことができます。その場合には以下のアドレスにアクセスしてご使用ください。
 
-https://mainpy-fpvtzykqdqqhehfb8z9sws.streamlit.app
+https://aeonsendsupplypicker-mhl34eaubsaec6w3aobtvz.streamlit.app/
