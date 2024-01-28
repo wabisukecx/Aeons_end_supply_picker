@@ -32,12 +32,16 @@ def check_condition(pattern, applyset, mode, i):
         cmd += 'AND gain_gravehold_life = ?'
     elif mode == 5:
         cmd += 'AND gain_life = ?'
+    elif mode == 6:
+        cmd += 'AND draw_card = ?'
+    elif mode == 7:
+        cmd += 'AND multiple_damage = ?'
 
     cmd += 'ORDER BY RANDOM() LIMIT 1'
     return select_type, cmd
 
 def main():
-    st.title('イーオンズ・エンド - サプライ自動生成')
+    st.title('イーオンズ・エンド - 自動サプライ構成ツール')
 
     conn = sqlite3.connect("Aeons_end.db")
     cur = conn.cursor()
@@ -45,20 +49,26 @@ def main():
     # サプライ検索条件の選択
     applyset = st.selectbox('検索するカードセット：', ('all', '1st wave', '2nd wave'))
 
-    # チェックボックス
-    destroy_card = st.checkbox('カード破棄')
-    focus_breach = st.checkbox('破孔強化')
-    gain_charge = st.checkbox('チャージを得る')
-    gain_gravehold_life = st.checkbox('グレイヴホールド回復')
-    gain_life = st.checkbox('体力回復')
+    col1, col2 = st.columns(2)
+    # チェックボックス(1列目)
+    with col1:    
+        destroy_card = st.checkbox('カード破棄')
+        focus_breach = st.checkbox('破孔強化')
+        gain_charge = st.checkbox('チャージを得る')
+        gain_gravehold_life = st.checkbox('グレイヴホールド回復')
+
+    with col2:
+        gain_life = st.checkbox('体力回復')
+        draw_card = st.checkbox('カードドロー')
+        multiple_damage = st.checkbox('複数対象ダメージ')
 
     if st.button('サプライ選択'):
-        supply_card, pattern_number = generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge, gain_gravehold_life, gain_life)
+        supply_card, pattern_number = generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge, gain_gravehold_life, gain_life, draw_card, multiple_damage)
         display_supply_card(supply_card, pattern_number)
 
     conn.close()
 
-def generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge, gain_gravehold_life, gain_life):
+def generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge, gain_gravehold_life, gain_life, draw_card, multiple_damage):
     supply_card = []
     option_index = []
     option_list = []
@@ -75,6 +85,8 @@ def generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge
     option.append(gain_charge)
     option.append(gain_gravehold_life)
     option.append(gain_life)
+    option.append(draw_card)
+    option.append(multiple_damage)
 
     for i in range(len(pattern)):
         mode = 0
@@ -124,7 +136,7 @@ def generate_supply_card(conn, applyset, destroy_card, focus_breach, gain_charge
 
 def display_supply_card(supply_card, pattern_number):
     if supply_card:
-        st.header('サプライ構成チャート：' + str(pattern_number))
+        st.header('サプライ構成チャート' + str(pattern_number))
         for i, card in enumerate(supply_card):
             st.write(f'{i + 1}. {card}')
     else:
