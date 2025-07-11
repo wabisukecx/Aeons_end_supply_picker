@@ -1,144 +1,152 @@
-# Aeon's End - Automatic Supply Configuration Tool
+# イーオンズ・エンド - 自動サプライ生成ツール
 
-This tool automatically generates balanced supply configurations for the cooperative deck-building game **Aeon's End**. Instead of manually selecting which cards to include in your game's market, this application uses the official supply construction rules to create well-balanced 6-card supply combinations that ensure engaging and strategic gameplay.
+このツールは、協力型デッキ構築ゲーム **イーオンズ・エンド** のバランスの取れたサプライ構成を自動生成します。ゲーム開始前に手動でマーケットに含めるカードを選択する代わりに、公式のサプライ構成ルールを使用してバランスの取れた9枚のサプライ組み合わせを作成し、魅力的で戦略的なゲームプレイを保証します。
 
-## What This Tool Does
+## このツールができること
 
-**Aeon's End** requires players to select 6 different supply cards (the market) before each game begins. Creating a balanced supply manually can be time-consuming and may result in unbalanced gameplay. This tool solves that problem by:
+**イーオンズ・エンド** では、各ゲーム開始前にプレイヤーが9種類のサプライカード（マーケット）を選択する必要があります。バランスの取れたサプライを手動で作成するのは時間がかかり、アンバランスなゲームプレイに繋がる可能性があります。このツールは以下を提供してその問題を解決します：
 
-- **Automatically generating supply configurations** based on the official supply construction patterns (6 different rule-based patterns)
-- **Ensuring card cost distribution** follows recommended guidelines for balanced gameplay
-- **Including specific card abilities** when requested (such as card destruction, breach focusing, charge generation, etc.)
-- **Supporting multiple card sets** from different waves of Aeon's End expansions
+- **自動サプライ構成生成** - 公式のサプライ構成パターン（6種類のルールベースパターン）に基づく
+- **カードコスト配分の保証** - バランスの取れたゲームプレイのための推奨ガイドラインに従う
+- **特定カード能力の確保** - 要求された場合（カード破棄、破孔強化、チャージ生成など）
+- **複数カードセット対応** - イーオンズ・エンドの様々な拡張から選択可能
 
-## Key Features
+## 主な機能
 
-### Smart Supply Generation
-The tool uses predefined patterns that specify:
-- Card types (spells, gems, relics)
-- Cost ranges for each slot
-- Balanced distribution across different price points
+### スマートサプライ生成
+ツールは以下を指定する事前定義パターンを使用します：
+- カード種別（呪文、宝石、遺物）
+- 各スロットのコスト範囲
+- 異なる価格帯間のバランス配分
 
-### Customizable Card Abilities
-You can specify which special abilities you want guaranteed in your supply:
-- **Card Destruction** - Remove cards from your deck permanently
-- **Breach Focusing** - Improve your breach capabilities
-- **Charge Generation** - Gain charge tokens for enhanced spells
-- **Gravehold Life Recovery** - Heal the shared life pool
-- **Life Recovery** - Heal individual player life
-- **Card Draw** - Draw additional cards
-- **Multiple Target Damage** - Damage multiple enemies simultaneously
+### カスタマイズ可能なカード能力
+サプライに含めたい特定能力を指定できます：
+- **カード破棄** - デッキからカードを永続的に除去
+- **破孔強化** - 破孔能力を向上
+- **チャージ生成** - 呪文強化用のチャージトークンを獲得
+- **グレイヴホールド回復** - 共有ライフプールを回復
+- **体力回復** - 個別プレイヤーライフを回復
+- **カードドロー** - 追加カードを引く
+- **複数対象ダメージ** - 複数の敵に同時ダメージ
+- **パルストークン** - パルス効果トークン
+- **沈静化トークン** - 沈静化効果トークン
 
-### Expansion Support
-Choose which card sets to include:
-- **All Cards** - Use the complete card pool
-- **1st Wave** - Original sets only
-- **2nd Wave** - Newer expansion content
+### 拡張サポート
+含めるカードセットを選択：
+- **全てのカード** - 完全なカードプールを使用
+- **基本セット** - 基本セットのみ
+- **深層** - 深層拡張
+- **名なき者** - 名なき者拡張
+- **終わりなき戦い** - 終わりなき戦い拡張
+- **虚空** - 虚空拡張
+- **外より来たりし闇** - 外より来たりし闇拡張
+- **レガシー** - レガシー拡張
+- **埋もれた秘密** - 埋もれた秘密拡張
 
-## How to Use
+## 使用方法
 
-### Online Access
-The easiest way to use this tool is through the hosted Streamlit application:
+### ローカルインストール
 
-**🌐 [Launch the Tool](https://aeonsendsupplypicker-mhl34eaubsaec6w3aobtvz.streamlit.app/)**
+コンピューターでローカルに実行したい場合：
 
-### Local Installation
+#### 前提条件
+- Python 3.7以上
+- 必要なJSONファイル（`cardlist.json`, `nemesis_basic_cards.json`）
 
-If you prefer to run the tool locally on your computer:
+#### セットアップ手順
 
-#### Prerequisites
-- Python 3.7 or higher
-- The Aeon's End card database (`Aeons_end.db` file)
+1. **このリポジトリをクローンまたはダウンロード** します
 
-#### Setup Steps
-
-1. **Clone or download this repository** to your computer
-
-2. **Install the required dependencies:**
+2. **必要な依存関係をインストール:**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Ensure the database file** `Aeons_end.db` is in the same directory as `main.py`
+3. **JSONファイルが `main.py` と同じディレクトリにあることを確認** してください
 
-4. **Run the application:**
+4. **アプリケーションを実行:**
    ```bash
    streamlit run main.py
    ```
 
-5. **Open your web browser** and navigate to the URL shown in the terminal (typically `http://localhost:8501`)
+5. **ウェブブラウザを開き** ターミナルに表示されたURL（通常は `http://localhost:8501`）にアクセスします
 
-## Using the Interface
+## インターフェースの使用方法
 
-### Step 1: Select Your Card Set
-Choose which cards to include in the generation pool:
-- **All** - Uses cards from all available expansions
-- **1st Wave** - Limited to original card sets
-- **2nd Wave** - Uses newer expansion cards
+### ステップ1: カードセットを選択
+生成プールに含めるカードを選択：
+- **全てのカード** - 利用可能な全拡張のカードを使用
+- **基本セット** - 基本カードセットに限定
+- **その他の拡張** - 特定の拡張カードを使用
 
-### Step 2: Choose Desired Abilities (Optional)
-Check any abilities you want guaranteed in your supply. The tool will ensure at least one card with each selected ability appears in the final configuration, provided it fits within the cost and type constraints of the selected pattern.
+### ステップ2: 必要な能力を選択（オプション）
+サプライで保証したい能力をチェック。ツールは選択されたパターンのコストと種別制約内で適合する場合、各選択能力を持つ少なくとも1枚のカードが最終構成に現れることを保証します。
 
-### Step 3: Generate Your Supply
-Click the **"サプライ選択" (Supply Selection)** button to generate a new supply configuration. The tool will:
-1. Randomly select one of the 6 official supply construction patterns
-2. Fill each slot according to the pattern's specifications
-3. Replace cards as needed to include your requested abilities
-4. Display the final 6-card configuration
+### ステップ3: サプライを生成
+**「🎲 サプライ生成」** ボタンをクリックして新しいサプライ構成を生成します。ツールは以下を実行します：
+1. 6つの公式サプライ構成パターンから1つをランダム選択
+2. パターンの仕様に従って各スロットを埋める
+3. 要求された能力を含めるために必要に応じてカードを置換
+4. 最終的な9枚カード構成を表示
 
-### Understanding the Results
-The generated supply will show:
-- **Card names** with their expansion set
-- **Supply pattern number** (1-6) that was used
-- **Balanced cost distribution** according to official guidelines
+### ステップ4: ネメシス基本カードを生成（オプション）
+**「👹 ネメシス基本カード生成」** タブでは：
+1. プレイヤー人数を選択（1-4人）
+2. 含めたいカードセットを選択
+3. プレイヤー人数に応じた適切なティア配分で基本カードデッキを自動生成
 
-## Technical Details
+### 結果の理解
+生成されたサプライには以下が表示されます：
+- **カード名** と拡張セット
+- **サプライパターン番号**（1-6）使用されたもの
+- **公式ガイドラインに従ったバランス取れたコスト配分**
 
-### How Pattern Selection Works
-The tool maintains 6 different supply construction patterns in the database, each specifying:
-- Card types for each of the 6 slots
-- Cost requirements (exact values, ranges, minimums, or maximums)
-- Conditions for valid card selection
+## 技術詳細
 
-### Ability Inclusion Logic
-When you request specific abilities:
-1. The tool first generates a basic supply using the selected pattern
-2. It then searches for cards with your requested abilities that fit the pattern constraints
-3. It randomly replaces existing cards with ability-matching cards where possible
-4. Cards are never replaced if no suitable alternative exists within the pattern constraints
+### パターン選択の仕組み
+ツールはJSONファイル内に6種類の異なるサプライ構成パターンを維持し、それぞれ以下を指定：
+- 9スロットそれぞれのカード種別
+- コスト要件（正確な値、範囲、最小値、最大値）
+- 有効なカード選択条件
 
-### Database Structure
-The application relies on an SQLite database containing:
-- **Card information** (names, costs, types, abilities, expansion sets)
-- **Supply patterns** (the 6 official construction templates)
-- **Ability flags** for efficient filtering
+### 能力包含ロジック
+特定能力を要求した場合：
+1. ツールは最初に選択されたパターンを使用して基本サプライを生成
+2. パターン制約に適合し要求された能力を持つカードを検索
+3. 可能な場合、既存カードを能力適合カードでランダム置換
+4. パターン制約内で適切な代替が存在しない場合、カードは置換されません
 
-## Dependencies
+### データベース構造
+アプリケーションは以下を含むJSONファイルに依存：
+- **カード情報**（名前、コスト、種別、能力、拡張セット）
+- **サプライパターン**（6つの公式構成テンプレート）
+- **能力フラグ** 効率的なフィルタリング用
 
-- **Streamlit** - Web application framework for the user interface
-- **Pandas** - Data manipulation and analysis for database operations
-- **SQLite3** - Database connectivity (included with Python)
+## 依存関係
 
-## Troubleshooting
+- **Streamlit** - ユーザーインターフェース用Webアプリケーションフレームワーク
+- **Pandas** - データベース操作用のデータ操作・分析ライブラリ（使用していない場合は削除可能）
 
-### "該当するカードが存在しません" Error
-This error means no cards match the current pattern requirements. This can happen when:
-- The selected card set is too restrictive
-- The combination of requested abilities and pattern constraints is impossible
-- The database is missing expected cards
+## トラブルシューティング
 
-**Solution:** Try clicking the supply selection button again to get a different pattern, or reduce the number of requested abilities.
+### "該当するカードが見つかりません" エラー
+このエラーは現在のパターン要件に合致するカードがないことを意味します。以下の場合に発生可能：
+- 選択されたカードセットが制限的すぎる
+- 要求された能力とパターン制約の組み合わせが不可能
+- データベースに期待されるカードが不足
 
-### Missing Database File
-If you see database connection errors:
-- Ensure `Aeons_end.db` is in the same directory as `main.py`
-- Verify the database file isn't corrupted
-- Check file permissions allow read access
+**解決策:** 異なるパターンを取得するためにサプライ生成ボタンを再度クリックするか、要求する能力数を減らしてください。
 
-## Contributing
+### データベースファイルの不足
+データベース接続エラーが表示される場合：
+- `cardlist.json` と `nemesis_basic_cards.json` が `main.py` と同じディレクトリにあることを確認
+- ファイルが破損していないことを確認
+- ファイル権限で読み取りアクセスが許可されていることを確認
 
-This tool is designed to make Aeon's End setup faster and more enjoyable. If you encounter issues or have suggestions for improvements, please consider contributing to the project.
+## 貢献
+
+このツールはイーオンズ・エンドのセットアップをより速く楽しくするために設計されています。問題に遭遇したり改善提案がある場合は、プロジェクトへの貢献をご検討ください。
 
 ---
 
-*This tool is a fan-made utility for Aeon's End and is not officially affiliated with Action Phase Games or the game's publishers.*
+*このツールはイーオンズ・エンド用のファン製作ユーティリティであり、Action Phase Gamesやゲームの発行者と公式に提携していません。*
